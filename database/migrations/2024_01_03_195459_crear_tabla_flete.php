@@ -28,8 +28,12 @@ return new class extends Migration
             //$table->integer('mt3');
             $table->date('fecha_pago');
             $table->string('creado_por', 100);
-           // $table->string('status')->nullable();   
+            $table->string('status')->default('En Ruta');   
             $table->date('fecha_llegada')->nullable();
+            $table->time('hora_llegada', $precision = 0)->nullable();
+            $table->string('cliente');
+            $table->string('material');
+            $table->string('notas')->nullable();
            // $table->time('hora_llegada', $precision = 0);          
             $table->timestamps();
             $table->charset = 'utf8mb4';

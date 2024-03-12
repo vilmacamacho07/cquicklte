@@ -35,7 +35,10 @@ Fletes
                             <th>Fecha Salida</th>
                             <th>Hora Salida</th>
                             {{-- <th>Fecha Pago</th> --}}
+                            
                             <th>Fecha Llegada</th>
+                            <th>Hora Llegada</th>
+                            <th>Status</th>
                             {{-- <th>Creado Por</th> --}}
                             {{-- <th>Status Gondola</th> --}}
                             <th class="width80"></th>
@@ -45,7 +48,9 @@ Fletes
                         @foreach ($fletes as $gondola)
                         <tr>
                             <td>{{$gondola->id}}</td>
-                            <td>{{$gondola->gondola->placas_truck}}</td>
+                           
+                            <td><a href="{{route('ver_gondola', $gondola->gondola)}}" class="ver-gondola">{{$gondola->gondola->placas_truck}}</a></td>
+                            
                             {{-- <td>{{$gondola->gondola->mt3}}</td> --}}
                             <td>{{$gondola->gondola->mt3}}</td>
                             <td>{{$gondola->origen}}</td>
@@ -55,7 +60,10 @@ Fletes
                             <td>{{$gondola->hora_salida}}</td>
                             {{-- <td>{{$gondola->fecha_pago}}</td> --}}
                             {{-- <td class="flete-llegada">{{$gondola->fecha_llegada}}</td>  --}}
-                            <td class="fecha-llegada">{{$gondola->fecha_llegada ?? 'En Ruta'}}</td>
+                            <td class="fecha-llegada">{{$gondola->fecha_llegada ?? '-'}}</td>
+                            <td class="fecha-llegada">{{$gondola->hora_llegada ?? '-'}}</td>
+                            <td class="status">{{$gondola->status}}</td>
+                            
                             {{-- <td>{{$gondola->hora_llegada}}</td> --}}
                             
                             {{-- <td>{{$gondola->usuario->nombre}}</td> --}}
@@ -69,7 +77,15 @@ Fletes
                                 @endif
                                
                             </td>
-                            <td class="imprimir"><a href="#" class="imprimir " title="Imprimir ticket" >
+                            <td>
+                                <a href="{{route('flete.mostrar',['id' =>$gondola->id,'gondolaid' =>$gondola->gondola->id])}}"  title="Mostrar ticket" >
+                                    <i class="fas fa-print"></i>
+                                    </i>
+                               
+                            </td>
+
+                            <td class="imprimir">
+                                <a href="#" class="imprimir " title="Imprimir ticket" >
                                 <i class="fas fa-print"></i>
                                 </i>
                             </a>

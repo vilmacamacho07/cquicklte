@@ -25,8 +25,9 @@ class ValidacionGondola extends FormRequest
     {
         return [
             
-            //'placas_truck' => 'required|max:10|unique:libro,isbn,' . $this->route('id'),
-            'placas_truck' => 'required|max:10',
+            'placas_truck' => 'required',
+            'placas_gondola1' => 'required',
+            'placas_gondola2' => 'required',
             'conductor_names' => 'required|max:100',
             'conductor_apellidos' => 'required|max:50',
             'mt3' => 'required|numeric',
@@ -38,8 +39,9 @@ class ValidacionGondola extends FormRequest
     {
         return [
             //'placas_truck.unique' => 'Ya existe una gondola con ese #PLACAS',
-            'placas_truck.required'=> 'Ya existe una gondola con ese #PLACAS',
-            'placas_truck.max'=> '#PLACAS maximo 10 caracteres',
+            'placas_truck.required'=> 'Ya existe un trailer con esas PLACAS',
+            'placas_gondola1.required'=> 'Ya existe una gondola con esas PLACAS',
+            'placas_gondola2.required'=> 'Ya existe una gondola con esas PLACAS',
             'conductor_names.required' => 'Ingresa el nombre del conductor',
             'conductor_apellidos.required' => 'Ingresa el apellido del conductor',
             'mt3.required' => 'Ingresa los mt3 de la gondola',

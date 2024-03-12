@@ -43,6 +43,10 @@ class GondolaController extends Controller
         //
         if ($foto = Gondola::setGondoladocs($request->foto_up))
             $request->request->add(['foto' => $foto]);
+        if ($licencia = Gondola::setGondoladocs($request->foto_up_licencia))
+            $request->request->add(['licencia' => $licencia]);
+        if ($seguro = Gondola::setGondoladocs($request->foto_up_seguro))
+            $request->request->add(['seguro' => $seguro]);
         Gondola::create($request->all());
         return redirect()->route('gondola')->with('mensaje', 'La gondola se creo correctamente');
   
@@ -96,6 +100,10 @@ class GondolaController extends Controller
         $gondola = Gondola::findOrFail($id);
         if ($foto = Gondola::setGondoladocs($request->foto_up, $gondola->foto))
             $request->request->add(['foto' => $foto]);
+        if ($licencia = Gondola::setGondoladocs($request->foto_up_licencia, $gondola->licencia))
+            $request->request->add(['licencia' => $licencia]);
+        if ($seguro = Gondola::setGondoladocs($request->foto_up_seguro, $gondola->seguro))
+            $request->request->add(['seguro' => $seguro]);
         $gondola->update($request->all());
         return redirect()->route('gondola')->with('mensaje', 'La gondola se actualizó correctamente');
   

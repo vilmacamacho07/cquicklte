@@ -35,15 +35,7 @@ class FleteController extends Controller
        // $gondolas = Gondola::whereNotNull('status')->pluck('placas_truck', 'id');
         $gondolas = Gondola::where('status','Disponible')->pluck('placas_truck','id');
         return view('flete.crear', compact('gondolas')  );
-       /*
-        
-        $libros = Libro::withCount(['prestamo'  => function (Builder $query) {
-            $query->whereNull('fecha_devolucion');
-        }])->get()->filter(function ($item, $key) {
-            return $item->cantidad > $item->prestamo_count;
-        })->pluck('titulo', 'id');
-        return view('libro-prestamo.crear', compact('libros'));
-        */
+      
     }
 
     /**
@@ -67,7 +59,10 @@ class FleteController extends Controller
              'hora_salida' => $request->hora_salida,
              'fecha_pago' => $request->fecha_pago,
              'creado_por' => $request->creado_por,
-             'usuario_id' => auth()->user()->id
+             'usuario_id' => auth()->user()->id,
+             'cliente' => $request->cliente,
+             'material' => $request->material,
+             'notas' => $request->notas
          ]);
         return redirect()->route('flete')->with('mensaje', 'El flete se registró correctamente');
     }
@@ -90,7 +85,7 @@ class FleteController extends Controller
         if ($request->ajax()) {
             Flete::where('gondola_id', $gondola_id)
             ->whereNull('fecha_llegada')
-            ->update(['fecha_llegada' => date('Y-m-d')]);
+            ->update(['fecha_llegada' => date('Y-m-d'),'status'=>'Finalizado','hora_llegada'=>date('H:i:s')]);
             Gondola::where('id',$gondola_id)
             ->update(['status'=> 'Disponible']);
             return response()->json(['fecha_llegada' => date('Y-m-d')]);
@@ -99,6 +94,27 @@ class FleteController extends Controller
         }
 
     }
+
+    public function mostrar($id,$gondola_id)
+    {
+        //
+        $flete = Flete::findOrFail($id);
+        $gondola = Gondola::find($gondola_id);
+       // dd($flete,$gondola);
+        return view('flete.mostrar', compact('flete','gondola'));
+    }
+
+
+    public function ver(Request $request, Gondola $gondola)
+    {
+        //
+        if ($request->ajax()) {
+            return view('gondola.ver', compact('gondola'));
+        } else {
+            abort(404);
+        }
+    }
+
 
     /**
      * Display the specified resource.
@@ -109,6 +125,7 @@ class FleteController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**

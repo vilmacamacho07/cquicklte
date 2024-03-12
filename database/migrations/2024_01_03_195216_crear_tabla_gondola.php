@@ -15,7 +15,10 @@ class CrearTablaGondola extends Migration
     {
         Schema::create('gondola', function (Blueprint $table) {
              $table->bigIncrements('id');
-             $table->string('placas_truck',10)->unique();
+             $table->string('placas_truck')->unique();
+             $table->string('placas_gondola1')->unique();
+             $table->string('placas_gondola2')->unique()->nullable();
+             $table->string('tipo_transporte');
              $table->string('conductor_names');
              $table->string('conductor_apellidos');
              $table->integer('mt3');
@@ -23,6 +26,8 @@ class CrearTablaGondola extends Migration
              //$table->integer('documentos');
              $table->string('name_admin_flete');
              $table->string('foto', 100)->nullable();
+             $table->string('licencia', 100)->nullable();
+             $table->string('seguro', 100)->nullable();
              //$table->string('foto_curp', 100)->nullable();
              $table->timestamps();
              $table->charset = 'utf8mb4';

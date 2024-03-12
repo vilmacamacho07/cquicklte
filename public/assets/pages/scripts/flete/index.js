@@ -9,6 +9,15 @@ $(document).ready(function () {
         ajaxRequest(data, url, $(this));
     });
 
+    $('.ver-gondola').on('click', function (event) {
+        event.preventDefault();
+        const url = $(this).attr('href');
+        const data = {
+            _token: $('input[name=_token]').val()
+        }
+        ajaxRequest(data, url, 'verGondola');
+    });
+
     function ajaxRequest(data, url, link) {
         $.ajax({
             url: url,
@@ -18,6 +27,11 @@ $(document).ready(function () {
                 const fecha = respuesta.fecha_llegada;
                 link.closest('tr').find('td.fecha-llegada').text(fecha);
                 link.remove();
+
+                 if (funcion == 'verGondola') {
+                $('#modal-ver-gondola .modal-body').html(respuesta)
+                $('#modal-ver-gondola').modal('show');
+                }
             },
             error: function () {
 

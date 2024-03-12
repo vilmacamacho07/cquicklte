@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-Gondolas
+Transporte
 @endsection
 
 @section("styles")
@@ -24,7 +24,7 @@ Gondolas
         @include('includes.mensaje')
         <div class="card ">
             <div class="card-header bg-olive">
-                <h3 class="card-title">Editar Gondola - {{$gondola->placas_truck}}</h3>
+                <h3 class="card-title">Editar Transporte - {{$gondola->placas_truck}}</h3>
                 <div class="card-tools">
                     <a href="{{route('gondola')}}" class="btn bg-navy btn-sm">
                         <i class="fa fa-fw fa-reply-all"></i> Volver al listado

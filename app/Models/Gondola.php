@@ -11,7 +11,7 @@ use Intervention\Image\Facades\Image;
 class Gondola extends Model
 {
     protected $table = "gondola";
-    protected $fillable = ['placas_truck', 'conductor_names', 'conductor_apellidos', 'mt3','status', 'name_admin_flete', 'foto'];
+    protected $fillable = ['placas_truck','placas_gondola1','placas_gondola2','tipo_transporte', 'conductor_names', 'conductor_apellidos', 'mt3','status', 'name_admin_flete', 'foto', 'licencia','seguro'];
  
     public function creado()
     {

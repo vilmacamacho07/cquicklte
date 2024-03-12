@@ -21,6 +21,8 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'InicioController@index')->name('inicio');
+//Route::get('/mostrarflete', 'InicioController@index')->name('mostrarflete');
+
 Route::get('seguridad/login', 'Seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'Seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
@@ -76,6 +78,8 @@ Route::delete('gondola/{id}', 'GondolaController@eliminar')->name('eliminar_gond
 
 /* RUTAS FLETES
  */
+
+ Route::get('flete/{id}/{gondolaid}', 'FleteController@mostrar')->name('flete.mostrar');
  Route::get('flete', 'FleteController@index')->name('flete')->middleware('auth');
  Route::get('flete/crear/', 'FleteController@crear')->name('flete.crear')->middleware('auth');
  //Route::get('flete/crear/{placas_truck}', 'FleteController@datos_gondola')->name('flete.datos_gondola')->middleware('auth');
@@ -83,21 +87,4 @@ Route::delete('gondola/{id}', 'GondolaController@eliminar')->name('eliminar_gond
  Route::put('flete/{gondola}', 'FleteController@finalizar')->name('flete.finalizar')->middleware('auth');
 
 
- /*RUTAS LIBRO*/
-Route::get('libro', 'LibroController@index')->name('libro')->middleware('auth');
-Route::get('libro/crear', 'LibroController@crear')->name('crear_libro')->middleware('auth');
-Route::post('libro', 'LibroController@guardar')->name('guardar_libro')->middleware('auth');
-Route::post('libro/{libro}', 'LibroController@ver')->name('ver_libro')->middleware('auth');
-Route::get('libro/{id}/editar', 'LibroController@editar')->name('editar_libro')->middleware('auth');
-Route::put('libro/{id}', 'LibroController@actualizar')->name('actualizar_libro')->middleware('auth');
-Route::delete('libro/{id}', 'LibroController@eliminar')->name('eliminar_libro')->middleware('auth');
-
-
-/**
- * Rutas Libro Prestamo
- */
-
-Route::get('libro-prestamo', 'LibroPrestamoController@index')->name('libro-prestamo')->middleware('auth');
-Route::get('libro-prestamo/crear', 'LibroPrestamoController@crear')->name('libro-prestamo.crear')->middleware('auth');
-Route::post('libro-prestamo', 'LibroPrestamoController@guardar')->name('libro-prestamo.guardar')->middleware('auth');
-Route::put('libro-prestamo/{libro}', 'LibroPrestamoController@devolucion')->name('libro-prestamo.devolver')->middleware('auth');
+ 

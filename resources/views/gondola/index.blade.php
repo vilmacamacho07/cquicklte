@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-Gondolas
+Transporte
 @endsection
 
 @section("scripts")
@@ -14,7 +14,7 @@ Gondolas
         @include('includes.mensaje')
         <div class="card">
             <div class="card-header bg-lightblue">
-                <h3 class="card-title">Gondolas</h3>
+                <h3 class="card-title">Transporte</h3>
                 <div class="card-tools">
                     <a href="{{route('crear_gondola')}}" class="btn bg-navy btn-sm">
                         <i class="fa fa-fw fa-plus-circle"></i> Nuevo registro
@@ -26,10 +26,13 @@ Gondolas
                     <thead>
                         <tr>
                             {{-- <th class="width20">ID</th> --}}
-                            <th>#Placas</th>
+                            <th>#Placas Tracto</th>
+                            <th>#Placas Gondola 1</th>
+                            <th>#Placas Gondola 2</th>
+                            <th>Tipo</th>
                             <th>Conductor</th>
                             <th>mt3</th>
-                            <th>Supervisor de la Gondola</th>
+                            <th>Supervisor del Transporte</th>
                             <th>Status</th>
                             <th class="width80"></th>
                         </tr>
@@ -39,6 +42,9 @@ Gondolas
                         <tr>
                             {{-- <td>{{$gondo->id}}</td> --}}
                             <td><a href="{{route('ver_gondola', $gondo)}}" class="ver-gondola">{{$gondo->placas_truck}}</a></td>
+                            <td>{{$gondo->placas_gondola1}}</td>
+                            <td>{{$gondo->placas_gondola2}}</td>
+                            <td>{{$gondo->tipo_transporte}}</td>
                             <td>{{$gondo->conductor_names}} {{$gondo->conductor_apellidos}}</td>
                             <td>{{$gondo->mt3}}</td>
                             <td>{{$gondo->name_admin_flete}}</td>

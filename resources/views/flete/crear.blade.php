@@ -42,6 +42,24 @@ function buscar(){
                         </div>
                     </div>
                     
+                    <div class="form-group row">
+                        <label for="cliente" class="col-lg-3 col-form-label requerido">Cliente</label>
+                        <div class="col-lg-8">
+                        <input type="text" name="cliente" id="cliente" class="form-control" value="{{old('cliente'), $gondola->cliente ?? ''}}" required/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="material" class="col-lg-3 col-form-label requerido">Material</label>
+                        <div class="col-lg-8">
+                        <input type="text" name="material" id="material" class="form-control" value="{{old('material'), $gondola->material ?? ''}}" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="notas" class="col-lg-3 col-form-label requerido">Notas</label>
+                        <div class="col-lg-8">
+                        <input type="text" name="notas" id="notas" class="form-control" value="{{old('notas'), $gondola->notas ?? ''}}" />
+                        </div>
+                    </div>
                     {{-- <div class="form-group row">
                         <label for="mt3" class="col-lg-3 col-form-label requerido">MT3</label>
                         <div class="col-lg-8">
@@ -49,15 +67,11 @@ function buscar(){
                         </div>
                     </div> --}}
 
+
                     <div class="form-group row">
                         <label for="origen" class="col-lg-3 col-form-label requerido" >Origen</label>
                         <div  class="col-lg-8">
-                            <select name="origen" id="origen" class="form-control"  required>
-                                <option value="">Seleccione el origen</option>
-                                <option value="SAT">SAT</option>
-                                <option value="SAT1">SAT1</option>
-                                <option value="SAT2">SAT2</option>
-                            </select>
+                            <input type="text" name="origen" id="origen" class="form-control" value="{{old('origen'), $gondola->origen ?? ''}}"  required/>
                         </div>
                     </div>
 
@@ -66,36 +80,21 @@ function buscar(){
                     <div class="form-group row">
                         <label for="destino" class="col-lg-3 col-form-label requerido" >Destino</label>
                         <div  class="col-lg-8">
-                            <select name="destino" id="destino" class="form-control"  required>
-                                <option value="">Seleccione el destino</option>
-                                <option value="PUE">PUE</option>
-                                <option value="TAB">TAB</option>
-                                <option value="OAX">OAX</option>
-                            </select>
+                            <input type="text" name="destino" id="destino" class="form-control" value="{{old('destino'), $gondola->destino ?? ''}}"  required/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="mina" class="col-lg-3 col-form-label requerido" >Mina</label>
                         <div  class="col-lg-8">
-                            <select name="mina" id="mina"  class="form-control"  required>
-                                <option value="">Seleccione la mina</option>
-                                <option value="mina1">mina1</option>
-                                <option value="mina2">mina2</option>
-                                <option value="mina3">mina3</option>
-                            </select>
+                            <input type="text" name="mina" id="mina" class="form-control" value="{{old('mina'), $gondola->mina ?? ''}}"  required/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="km" class="col-lg-3 col-form-label requerido" >KM</label>
                         <div  class="col-lg-8">
-                            <select name="km" id="km"  class="form-control"  required>
-                                <option value="">Seleccione los km</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
+                            <input type="number" id="km" name="km" class="form-control" value="{{old('km'), $gondola->km ?? ''}}"  min="0" max="100"  required/>
                         </div>
                     </div>
 
@@ -107,18 +106,19 @@ function buscar(){
                         <input type="text" name="fecha_salida" id="fecha_salida" class="form-control" value="{{old('fecha_salida', date('Y-m-d'))}}"  readonly  required/>
                         </div>
                     </div>
-
+                    
                     <div class="form-group row">
                         <label for="hora_salida" class="col-lg-3 col-form-label requerido">Hora de Salida</label>
                         <div class="col-lg-8">
-                        <input type="text" name="hora_salida" id="hora_salida" class="form-control" value="{{old('hora_salida', date('h:i:s'))}}" readonly  required/> 
+                        <input type="time" name="hora_salida" id="hora_salida" class="form-control" tz="Indian/Chagos" value="<?php date_default_timezone_set('America/Mexico_City'); echo(date('H:i:s') );?>" readonly  required/> 
                         </div>
                     </div>
+                    
                     <div class="form-group row">
                         <label for="fecha_pago" class="col-lg-3 col-form-label requerido">Fecha de pago</label>
                         <div class="col-lg-8">
                         <input type="text" name="fecha_pago" id="fecha_pago" class="form-control" value="{{old('fecha_salida', date('Y-m-d'))}}"  readonly  required/>
-                        </div>
+                    </div>
                     </div>
 
                     <div class="form-group row">
